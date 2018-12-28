@@ -7,7 +7,7 @@
 
 ## Model
 
-* covertToObjectModel [WIP]
+* convertToObjectModel [WIP]
 * show [WIP]
 
 ## Web app [TODO]

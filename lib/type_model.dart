@@ -52,7 +52,7 @@ JsonModel _covertToJsonModel(
   return model;
 }
 
-ObjectModel covertToObjectModel(dynamic obj,
+ObjectModel convertToObjectModel(dynamic obj,
     {String name = 'default', String Function(String) converter}) {
   final defaultConverter = (String f) => f;
   return _covertToJsonModel(obj, name, converter ?? defaultConverter);

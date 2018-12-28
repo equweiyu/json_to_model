@@ -9,13 +9,13 @@ void main() {
     test("default converter", () {
       final file = File('test/mock_data.json').readAsStringSync();
       final Map<String, dynamic> jsondata = json.decode(file);
-      final tm = covertToObjectModel(jsondata);
+      final tm = convertToObjectModel(jsondata);
       print(tm.show());
     });
     test("user converter", () {
       final file = File('test/mock_data.json').readAsStringSync();
       final Map<String, dynamic> jsondata = json.decode(file);
-      final tm = covertToObjectModel(jsondata, converter: convertFromSnakeCase);
+      final tm = convertToObjectModel(jsondata, converter: convertFromSnakeCase);
       print(tm.show());
     });
   });
