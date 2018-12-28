@@ -5,13 +5,11 @@ class ObjectModel extends JsonModel {
   String show({String className = 'Simple'}) {
     return 'class $className {\n' + parameterList() + '\n}';
   }
+
   //TODO:这里可以传入一个函数模板 (key,valueTypeName) => parameterShow
   String parameterList() {
     return items.map((f) => '  ' + f.key + ':' + f.valueTypeName).join('\n');
   }
-
-  
-
 
   @override
   String get valueTypeName => this.key;
@@ -38,20 +36,24 @@ abstract class JsonModel {
   String get valueTypeName;
 }
 
-JsonModel _covertToJsonModel(String name, dynamic obj) {
+JsonModel _covertToJsonModel(
+    dynamic obj, String name, String Function(String) converter) {
   JsonModel model;
   if (obj is Map<String, dynamic>) {
-    model = ObjectModel(
-        obj.entries.map((f) => _covertToJsonModel(f.key, f.value)).toList());
+    model = ObjectModel(obj.entries
+        .map((f) => _covertToJsonModel(f.value, f.key, converter))
+        .toList());
   } else if (obj is List) {
-    model = ArrayModel(_covertToJsonModel(name, obj.first));
+    model = ArrayModel(_covertToJsonModel(obj.first, name, converter));
   } else {
     model = PairModel(obj);
   }
-  model.key = name;
+  model.key = converter(name);
   return model;
 }
 
-ObjectModel covertToObjectModel(String name, dynamic obj) {
-  return _covertToJsonModel(name, obj);
+ObjectModel covertToObjectModel(dynamic obj,
+    {String name = 'default', String Function(String) converter}) {
+  final defaultConverter = (String f) => f;
+  return _covertToJsonModel(obj, name, converter ?? defaultConverter);
 }
