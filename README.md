@@ -3,7 +3,7 @@
 ## String util
 
 * convertFromSnakeCase
-* convertToSnakeCase [TODO]
+* convertToSnakeCase
 
 ## Model
 

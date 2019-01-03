@@ -33,8 +33,20 @@ String convertFromSnakeCase(String stringKey) {
 }
 
 String convertToSnakeCase(String stringKey) {
-  // TODO
-  return stringKey;
+  if (stringKey.isEmpty) {
+    return stringKey;
+  }
+  List<String> words = [];
+  var wordStart = 0;
+
+  var uppercase = stringKey.indexOf(RegExp(r'[A-Z]'), wordStart + 1);
+  while (uppercase >= 0) {
+    words.add(stringKey.substring(wordStart, uppercase).toLowerCase());
+    wordStart = uppercase;
+    uppercase = stringKey.indexOf(RegExp(r'[A-Z]'), wordStart + 1);
+  }
+  words.add(stringKey.substring(wordStart).toLowerCase());
+  return words.join('_');
 }
 
 String substringByRange(String string, StringRange range) =>
