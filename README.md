@@ -7,8 +7,13 @@
 
 ## Model
 
-* convertToObjectModel [WIP]
-* show [WIP]
+* convertToObjectModel
+* show
+
+## Language
+
+* Swift
+* Dart [TODO]
 
 ## Web app [TODO]
 

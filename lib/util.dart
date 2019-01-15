@@ -54,6 +54,7 @@ String substringByRange(String string, StringRange range) =>
 
 String capitalized(String string) =>
     string[0].toUpperCase() + string.substring(1).toLowerCase();
+String firstUpperCase(String string) => string[0].toUpperCase() + string.substring(1);
 
 class StringRange {
   final int startIndex;
